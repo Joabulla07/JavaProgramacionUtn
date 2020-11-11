@@ -1,0 +1,226 @@
+Veamos si queda claro: escribí una función longitudNombreCompleto, que tome un nombre y un apellido, y devuelva su longitud total, contando un espacio extra para separar a ambos:
+
+ longitudNombreCompleto("Cosme", "Fulanito")
+14
+
+
+
+function longitudNombreCompleto(Nombre, Apellido){
+return ((Nombre+Apellido).length)+1;
+}
+
+
+
+Escribí la función gritar. Podés usar la función convertirEnMayuscula, que, ehm... bueno... básicamente convierte en mayúsculas un string .
+
+function gritar(string){
+  return "¡"+string.toUpperCase()+"!";
+}
+
+
+
+
+Jorge dice que para él un número es de la suerte si
+
+es positivo, y
+es múltiplo de 2 o de 3, y
+no es el 15
+Escribí la función esNumeroDeLaSuerte que dado un número diga si cumple la lógica anterior.
+
+¡No vale usar if! Pero podés usar la función esMultiploDe, que recibe dos números y te dice si el segundo es múltiplo del primero.
+
+
+function esNumeroDeLaSuerte(numero){
+  return numero>0 && (esMultiploDe(2,numero) || esMultiploDe(3,numero)) && numero !=15;
+}
+
+
+
+
+
+
+Ahora que ya podemos escribir nuestros cartelitos identificatorios grandes y chicos, queremos una función que nos dé el cartelito de tamaño óptimo:
+
+si nombre y apellido tienen, en total, más de 15 letras, queremos un cartelito corto;
+de lo contrario, queremos un cartelito largo.
+Escrbí la función escribirCartelitoOptimo que tome un título, un nombre y un apellido, y utilizando escribirCartelito genere un cartelito corto o largo, según las reglas anteriores. Ejemplo:
+
+ escribirCartelitoOptimo("Ing.", "Carla", "Toledo")
+"Ing. Carla Toledo"
+ escribirCartelitoOptimo("Dr.", "Estanislao", "Schwarzschild")
+"Dr. Schwarzschild"
+ No modifiques la función origina
+
+
+
+function escribirCartelito(titulo, nom, ape, boolean){
+  return !boolean && titulo + " " + nom + " " + ape || titulo + " " + ape;
+}
+
+function escribirCartelitoOptimo(titulo, nombre, apellido){
+  var len = longitud(nombre)+longitud(apellido);
+  return len > 15 && escribirCartelito(titulo, nombre, apellido, true) || escribirCartelito(titulo, nombre, apellido, false)
+
+
+
+
+
+scribí la función contiene que nos diga si una lista contiene un cierto elemento.
+
+ contiene([1, 6, 7, 6], 7)
+true
+ contiene([1, 6, 7, 6], 6)
+true
+ contiene([], 7)
+false
+ contiene([8, 5], 7)
+false
+
+
+function contiene(lista,numero){
+  return posicion(lista,numero)>=0;
+}
+
+
+
+
+Desarrollá la función esDelMilenioPasado, que recibe un archivo y devuelve un booleano.
+
+ esDelMilenioPasado({ ruta: "D:\fotonacimiento.jpg", creacion: "14/09/1989" })
+=> true
+
+
+function esDelMilenioPasado(archivo){
+  let fecha = archivo.creacion
+  if (anio(fecha) < 2000){
+    return true;
+  }
+}
+
+
+
+
+
+
+
+
+¡Es tu turno! Desarrollá el procedimiento moverArchivo, que recibe un registro y una nueva ruta y modifica el archivo con la nueva ruta.
+
+function moverArchivo(archivo,nuevaRuta,ruta){
+  if(archivo.ruta != nuevaRuta){
+    archivo.ruta = nuevaRuta;
+  }
+  
+}
+
+
+
+
+Desarrollá el procedimiento agregarAPostresRapidos, que recibe una lista con postres rápidos y un postre por parámetro. Si el tiempo de cocción es de una hora o menos, se agrega el registro a la lista.
+
+function agregarAPostresRapidos(postresRapidos, postre){
+ if (postre.tiempoDeCoccion<=60){
+   agregar(postresRapidos,postre);
+ }
+}
+
+
+
+registros con registros: 
+
+let menuDelDia = {
+  platoPrincipal: "bife de lomo",
+  ensalada: ["papa", "zanahoria", "arvejas"],
+  postre: { ingredientes: ["queso crema", "frambuesas"], tiempoDeCoccion: 80 }
+};
+}
+
+
+
+Desarrollá una función endulzarMenu, que recibe un registro menú y devuelve el postre luego de agregarle azúcar. Si ya tiene azúcar, no importa... ¡le agrega más! 
+
+function endulzarMenu(registro){
+  agregar(registro.postre.ingredientes, "azúcar");
+}
+
+
+
+Completá la función ganancias que toma una lista de balances y devuelve una lista que solo posea solo las ganancias de cada uno.
+
+ ganancias([
+      { mes: "enero", ganancia: 40 }, 
+      { mes: "febrero", ganancia: 12 }, 
+      { mes: "marzo", ganancia: 8}
+  ])
+[40, 12, 8]
+
+
+
+function ganancias(balancesDeUnPeriodo) {
+  let ganancias = [];
+  for (let balance of balancesDeUnPeriodo) {
+    agregar(ganancias, balance.ganancia)
+  }
+  return ganancias;
+}
+
+
+
+
+Ahora que tenemos la función ganancias y balancesPositivos podemos utilizar la función promedio genérica para saber cuál es el promedio de ganancia de los balances positivos.
+
+Definí la función gananciasDeBalancesPositivos y luego usala junto a promedio para definir promedioDeBalancesPositivos.
+
+ ¡Dame una pista!
+Para poder tener la lista que recibe por parámetro promedio vas a tener que definir gananciasDeBalancesPositivos. Esta función primero filtra los balances positivos y luego los mapea a ganancias. Recordá que función hace cada una de estas cosas.
+
+
+function gananciasDeBalancesPositivos (balancesDeUnPeriodo){
+  return ganancias(balancesPositivos(balancesDeUnPeriodo));
+}
+
+function promedioDeBalancesPositivos(balancesDeUnPeriodo){
+  return promedio(gananciasDeBalancesPositivos (balancesDeUnPeriodo));
+}
+
+enbiblioteca()
+function ganancias(balancesDeUnPeriodo) {
+  let ganancias = [];
+  for (let balance of balancesDeUnPeriodo) {
+    agregar(ganancias, balance.ganancia)
+  }
+  return ganancias;
+}
+
+
+function balancesPositivos(balancesDeUnPeriodo) {
+  let balances = [];
+  for (let balance of balancesDeUnPeriodo) {
+    if (balance.ganancia > 0){
+      agregar(balances, balance)
+    }
+
+  }
+  return balances;
+}
+
+
+function promedio(listaDeNumeros) {
+    return sumatoria(listaDeNumeros) / longitud(listaDeNumeros);
+}
+
+function sumatoria(listaDeNumeros) {
+  let sumatoria = 0;
+  for (let numero of listaDeNumeros) {
+    sumatoria = sumatoria + numero;
+  }
+  return sumatoria;
+}
+
+function agregar(lista, elemento) {
+  return lista.push(elemento);
+}
+
+function longitud(lista) {
+  return lista.length;
+}
